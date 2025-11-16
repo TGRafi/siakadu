@@ -188,8 +188,8 @@ npm install concurrently
 ---
 
 ## 🧠 Catatan Tambahan
-
 - File `.env` bisa digunakan untuk menyimpan konfigurasi database dan port:
+
   ```
   PORT=5000
   DB_HOST=localhost
@@ -203,7 +203,6 @@ npm install concurrently
 ---
 
 ## 💬 Kontribusi
-
 Jika ingin berkontribusi:
 1. Fork repository ini
 2. Buat branch baru (`feature/fitur-baru`)
@@ -211,7 +210,6 @@ Jika ingin berkontribusi:
 4. Pull request ke branch `main`
 
 ---
-
 
 ## 👥 Tim Developer 
 | Nama | Peran |
