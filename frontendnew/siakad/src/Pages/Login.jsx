@@ -1,7 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 
-// coba dulu,kalau berhasil buat databsenya
 const VALID_USERS = [
   { email: 'mahasiswa1@univ.com', password: '123', role: 'mahasiswa', nama: 'Budi Santoso', id: 1 },
   { email: 'dosen@univ.com', password: '789', role: 'dosen', nama: 'Dr. Siti Dewi', id: 10, canAccKRS: true },

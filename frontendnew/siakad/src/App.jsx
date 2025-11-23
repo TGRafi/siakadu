@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React, { useState } from 'react';
-import Landing from "./Pages/Landing";
-import RegistMHS from "./Pages/Register";
-import LoginMHS from "./Pages/Login";
+import Landing from "./Pages/Landing.jsx";
+import RegistMHS from "./Pages/Register.jsx";
+import LoginMHS from "./Pages/Login.jsx";
 import DashboardMahasiswa from "./Pages/Mahasiswa/DashboardMahasiswa";
 import DashboardDosen from "./Pages/Dosen/DashboardDosen";
 import "./styles/style-Regis-Login.css";

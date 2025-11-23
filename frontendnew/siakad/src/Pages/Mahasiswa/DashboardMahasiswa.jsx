@@ -12,7 +12,7 @@ const DashboardMahasiswa = ({ user }) => {
     const [search, setSearch] = useState('');
   
     useEffect(() => {
-      fetch('/api/mahasiswa')
+      fetch('/api/mahasiswa') 
         .then(res => res.json())
         .then(data => setMahasiswa(data));
     }, []);

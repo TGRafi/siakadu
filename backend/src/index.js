@@ -8,7 +8,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-let dummyUsers = []; // hanya disimpan sementara di RAM
+let dummyUsers = []; 
 
 app.get("/", (req, res) => {
   res.send("✅ SIAKAD Backend aktif di port " + process.env.PORT);
