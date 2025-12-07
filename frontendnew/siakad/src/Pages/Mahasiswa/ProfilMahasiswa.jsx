@@ -24,23 +24,22 @@ const ProfilMahasiswa = ({ user }) => {
               className="d-flex justify-content-center bg-primary mx-auto rounded-circle align-items-center text-white"
               style={{ height: "70px", width: "70px" }}
             >
-              M
+              {user.nama ? user.nama.charAt(0).toUpperCase() : "U"}
             </h1>
             <p className="bg-white border p-2 rounded-3 d-flex justify-content-between w-100 mx-auto">
               <strong className="bg-white">Nama : </strong> {user.nama}
             </p>
             <p className="bg-white border p-2 rounded-3 d-flex justify-content-between w-100 mx-auto">
-              <strong className="bg-white">NIM :</strong> 1234567890
+              <strong className="bg-white">NIM :</strong> {user.nim}
             </p>
             <p className="bg-white border p-2 rounded-3 d-flex justify-content-between w-100 mx-auto">
               <strong className="bg-white">Email :</strong> {user.email}
             </p>
             <p className="bg-white border p-2 rounded-3 d-flex justify-content-between w-100 mx-auto">
-              <strong className="bg-white">Program Studi :</strong> Teknik
-              Informatika
+              <strong className="bg-white">Program Studi :</strong> {user.prodi}
             </p>
             <p className="bg-white border p-2 rounded-3 d-flex justify-content-between w-100 mx-auto">
-              <strong className="bg-white">Angkatan :</strong> 2022
+              <strong className="bg-white">Angkatan :</strong> {user.nim ? `20${user.nim.slice(0, 2)}` : '-'}
             </p>
           </div>
         </div>
@@ -54,11 +53,10 @@ const ProfilMahasiswa = ({ user }) => {
             <h4 className="bg-white">Domisili</h4>
             <hr></hr>
             <p className="bg-white">
-              <strong className="bg-white">Alamat:</strong> Jl. Merdeka No. 123,
-              Jakarta
+              <strong className="bg-white">Alamat:</strong> Asrama Universitas Kelompok5
             </p>
             <p className="bg-white">
-              <strong className="bg-white">No. Telepon:</strong> 081234567890
+              <strong className="bg-white">Kamar:</strong> {user.nim ? `${user.nim.slice(2, 4)} - ${user.nim.slice(4, 6)}` : '-'}
             </p>
           </div>
           <div className="mt-4 bg-white rounded-4">
@@ -84,7 +82,16 @@ const ProfilMahasiswa = ({ user }) => {
           <hr></hr>
           <div className="bg-white">
             <p className="bg-white border p-2 rounded-3 d-flex justify-content-between w-100 mx-auto">
-              <strong className="bg-white">Jumlah UKT :</strong> Rp 9.500.000
+              <strong className="bg-white">Jumlah UKT :</strong>
+              {user.nim ? (() => {
+                const lastTwo = parseInt(user.nim.slice(-2), 10); // ambil 2 digit terakhir
+                let ukt = 0;
+                if (lastTwo >= 1 && lastTwo <= 10) ukt = 1500000;
+                else if (lastTwo >= 11 && lastTwo <= 30) ukt = 3000000;
+                else if (lastTwo >= 31 && lastTwo <= 60) ukt = 4500000;
+                else if (lastTwo >= 61 && lastTwo <= 99) ukt = 6000000;
+                return `Rp ${ukt.toLocaleString()}`;
+              })() : '-'}
             </p>
             <p className="bg-white border p-2 rounded-3 d-flex justify-content-between w-100 mx-auto">
               <strong className="bg-white">Tanggal Pembayaran :</strong> 30

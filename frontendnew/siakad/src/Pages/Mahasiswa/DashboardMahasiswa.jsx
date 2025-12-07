@@ -11,18 +11,18 @@ const DashboardMahasiswa = ({ user }) => {
   const [mahasiswa, setMahasiswa] = useState([]);
 
   useEffect(() => {
-    fetch("/api/mahasiswa")
-      .then((res) => res.json())
-      .then((data) => setMahasiswa(data));
-  }, []);
+  fetch("http://localhost:5000/api/mahasiswa")
+    .then((res) => res.json())
+    .then((data) => setMahasiswa(data))
+    .catch(err => console.error(err));
+}, []);
+
 
   if (!user || user.role !== "mahasiswa") return null;
 
 
   const totalMahasiswa = mahasiswa.length;
-  const avgGPA = mahasiswa.length
-    ? (mahasiswa.reduce((sum, m) => sum + m.gpa, 0) / mahasiswa.length).toFixed(2)
-    : 0;
+  const avgGPA = 0; // sementara
 
   return (
     <div style={{ display: "flex", minHeight: "100vh" }}>
@@ -35,8 +35,6 @@ const DashboardMahasiswa = ({ user }) => {
           <p>Total Mahasiswa: {totalMahasiswa}</p>
           <p>Rata-rata GPA: {avgGPA}</p>
         </div>
-
-
 
         <div style={{ marginTop: "2rem" }} className="mx-4">
           {menu === "profil" && <ProfilMahasiswa user={user} />}

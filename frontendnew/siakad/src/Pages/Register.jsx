@@ -1,9 +1,42 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function RegistMHS() {
+  const navigate = useNavigate();
+  
+  // state untuk input form
+  const [nama, setNama] = useState("");
+  const [nim, setNim] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  // handle submit ke backend
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetch("http://localhost:5000/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nama, nim, email, password }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        alert("Register berhasil! Silakan login.");
+        navigate("/login");
+      } else {
+        alert(data.error || "Register gagal");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Terjadi error server");
+    }
+  };
+
   return (
     <div className="grad-color1 min-vh-100 d-flex align-items-center">
-    <div className="d-flex flex-column flex-md-row mx-auto rounded-4 bg-transparent">
+      <div className="d-flex flex-column flex-md-row mx-auto rounded-4 bg-transparent">
         {/* LEFT SIDE */}
         <div className="register-box py-4 px-3 bg-white w-100 w-md-50 shadow-lg rounded-4 ms-md-4">
           <h5 className="text-center mb-4 text-black fw-bold bg-white">
@@ -12,6 +45,7 @@ function RegistMHS() {
           <form
             className="mx-auto text-black bg-white"
             style={{ width: "90%" }}
+            onSubmit={handleSubmit} // hanya ini ditambah
           >
             <div className="form-group mb-2 bg-white">
               Nama Lengkap
@@ -20,6 +54,8 @@ function RegistMHS() {
                 className="form-control rounded-5"
                 placeholder="Masukkan Nama Lengkap"
                 required
+                value={nama}
+                onChange={(e) => setNama(e.target.value)}
               />
             </div>
 
@@ -30,6 +66,8 @@ function RegistMHS() {
                 className="form-control rounded-5"
                 placeholder="Masukkan NIM"
                 required
+                value={nim}
+                onChange={(e) => setNim(e.target.value)}
               />
             </div>
 
@@ -40,6 +78,8 @@ function RegistMHS() {
                 className="form-control rounded-5"
                 placeholder="Masukkan email"
                 required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 
@@ -50,6 +90,8 @@ function RegistMHS() {
                 className="form-control rounded-5"
                 placeholder="Masukkan password"
                 required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
 
